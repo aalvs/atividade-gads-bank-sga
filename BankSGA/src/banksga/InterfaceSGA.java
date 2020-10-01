@@ -24,6 +24,25 @@ public class InterfaceSGA extends javax.swing.JFrame {
         fila.add(s);
         senhaGerada.setText(s.getTipo() + "-" + s.getNum());
     }
+    //Identificar o tipo de senha, atender e remover da fila
+    private void atenderSenha(int cx, String t) {
+        for(int i = 0; i < fila.size(); i++) {
+            if(fila.get(i).getTipo().equals(t)) {
+                senhaChamada.setText(fila.get(i).getTipo() + "-" 
+                        + fila.get(i).getNum());
+                caixaAtendente.setText("CAIXA - " + cx);
+                fila.remove(i);
+                return;
+            } 
+        }
+        // Se não encontar uma senha com critério de prioridade, atende o primeiro da lista
+        if(fila.size() > 0) {
+            senhaChamada.setText(fila.get(0).getTipo() + "-" 
+                    + fila.get(0).getNum());
+            caixaAtendente.setText("CAIXA - " + cx);
+            fila.remove(0);
+        }
+    }
     /**
      * Creates new form InterfaceSGA
      */
@@ -251,9 +270,9 @@ public class InterfaceSGA extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(senhaChamada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addComponent(caixaAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
@@ -285,19 +304,19 @@ public class InterfaceSGA extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSenhaCActionPerformed
 
     private void btnCaixa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixa1ActionPerformed
-        // TODO add your handling code here:
+        atenderSenha(1, "P");
     }//GEN-LAST:event_btnCaixa1ActionPerformed
 
     private void btnCaixa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixa2ActionPerformed
-        // TODO add your handling code here:
+        atenderSenha(2, "R");
     }//GEN-LAST:event_btnCaixa2ActionPerformed
 
     private void btnCaixa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixa3ActionPerformed
-        // TODO add your handling code here:
+        atenderSenha(3, "R");
     }//GEN-LAST:event_btnCaixa3ActionPerformed
 
     private void btnCaixa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixa4ActionPerformed
-        // TODO add your handling code here:
+        atenderSenha(4, "C");
     }//GEN-LAST:event_btnCaixa4ActionPerformed
 
     private void senhaChamadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaChamadaActionPerformed
